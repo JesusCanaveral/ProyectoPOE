@@ -18,4 +18,5 @@ public class Colors {
     public static Color gray = new Color(68, 66, 66);
     public static Color lightGreen = new Color(48, 122, 109);
     public static Color darkGreen = new Color(48, 122, 109);
+    public static Color trans = new Color(0,0,0,0);
 }
