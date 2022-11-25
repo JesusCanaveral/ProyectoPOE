@@ -16,7 +16,8 @@ public class Colors {
     public static Color mediumBlue = new Color(48,114,208);
     public static Color darkBlue = new Color(9,21,64);
     public static Color gray = new Color(68, 66, 66);
+    public static Color lightGray = new Color(180, 180, 180);
     public static Color lightGreen = new Color(48, 122, 109);
     public static Color darkGreen = new Color(48, 122, 109);
-    public static Color trans = new Color(0,0,0,0);
+    public static Color trans = new Color(255,255,255,0);
 }

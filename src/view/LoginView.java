@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view;
+import java.awt.Color;
 import utils.Fonts;
 import utils.Colors;
 /**
@@ -17,6 +18,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+        this.getContentPane().requestFocusInWindow();
     }
 
     /**
@@ -29,31 +31,66 @@ public class LoginView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         titleMin2 = new components.TitleMin();
         titleClose1 = new components.TitleClose();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        customPassField1 = new components.CustomPassField();
+        customTextField1 = new components.CustomTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        customButton1 = new components.CustomButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/c220.png"))); // NOI18N
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(572, 220, -1, -1));
         jPanel2.add(titleMin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 15, 21, -1));
         jPanel2.add(titleClose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 12, -1));
 
         jLabel2.setBackground(Colors.lightBlue);
         jLabel2.setOpaque(true);
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 0, 250, 600));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 0, 240, 600));
+
+        jLabel1.setFont(Fonts.titleBig);
+        jLabel1.setForeground(Colors.mediumBlue);
+        jLabel1.setText("Iniciar Sesión");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 290, -1));
+
+        customPassField1.setText("customPassField1");
+        jPanel2.add(customPassField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 400, 35));
+
+        customTextField1.setText("Ingresa tu usuario...");
+        jPanel2.add(customTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 400, 35));
+
+        jLabel3.setFont(Fonts.title);
+        jLabel3.setForeground(new Color(100,100,100));
+        jLabel3.setText("Nombre de usuario");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 400, -1));
+
+        jLabel4.setFont(Fonts.title);
+        jLabel4.setForeground(new Color(100,100,100));
+        jLabel4.setText("Contraseña");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 400, -1));
+
+        customButton1.setText("Iniciar Sesión");
+        jPanel2.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 260, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +136,14 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private components.CustomButton customButton1;
+    private components.CustomPassField customPassField1;
+    private components.CustomTextField customTextField1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private components.TitleClose titleClose1;
     private components.TitleMin titleMin2;

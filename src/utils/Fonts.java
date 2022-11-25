@@ -13,4 +13,5 @@ import java.awt.Font;
 public class Fonts{
     public static Font title = new Font("Century", Font.PLAIN, 20);
     public static Font normal = new Font("Century", Font.PLAIN, 14);
+    public static Font titleBig = new Font("Century", Font.PLAIN, 36);
 }
