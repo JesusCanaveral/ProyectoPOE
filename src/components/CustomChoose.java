@@ -1,24 +1,19 @@
 package components;
 
 import java.awt.Color;
-import java.awt.Insets;
-import javax.swing.JTextField;
+import javax.swing.JComboBox;
 import utils.Fonts;
 import utils.Colors;
 
-public class CustomTextField extends JTextField {
+public class CustomChoose extends JComboBox {
     private boolean clicked;
     
-    public CustomTextField() {
+    public CustomChoose() {
         super();
         this.clicked = false;
-        this.setText("");
-        this.setBackground(Colors.trans);
+        this.setBackground(Colors.lightGray);
         this.setFont(Fonts.normal);
         this.setForeground(Colors.lightGray);
-        this.setMargin(new Insets(2, 10, 2, 10));
-        this.setSelectionColor(Colors.trans);
-        this.setHighlighter(null);
         this.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 thisMouseClicked(evt);
@@ -28,7 +23,6 @@ public class CustomTextField extends JTextField {
         
     private void thisMouseClicked(java.awt.event.FocusEvent evt) {                                         
         if(!clicked){
-            this.setText("");
             clicked = true;
             this.setForeground(Color.BLACK);
         } 
