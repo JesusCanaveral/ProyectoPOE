@@ -7,8 +7,8 @@ public class SensorTemperatura extends DispositivoIOT{
     private double temperaturaMaxima;
     private String tipoSensor;
 
-    SensorTemperatura(){  super();  }
-    SensorTemperatura(String versionFirmware, int id, String ip, String estadoActividad, String nombre, String modelo, double temperatura, String unidades, double temperaturaMinima, double temperaturaMaxima, String tipoSensor) {
+    public SensorTemperatura(){  super();  }
+    public SensorTemperatura(String versionFirmware, int id, String ip, String estadoActividad, String nombre, String modelo, double temperatura, String unidades, double temperaturaMinima, double temperaturaMaxima, String tipoSensor) {
         super(id, ip, estadoActividad, nombre, modelo, versionFirmware);
         this.temperatura = temperatura;
         this.unidades = unidades;

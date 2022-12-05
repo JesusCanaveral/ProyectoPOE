@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.util.UUID;
+import models.GPS;
 import utils.Fonts;
 import utils.Colors;
 
@@ -52,7 +54,6 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(Colors.white);
         setLocationByPlatform(true);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jPanel1.setBackground(Colors.white);
@@ -127,6 +128,11 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
         jPanel1.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
 
         customButton2.setText("Registrar");
+        customButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton2MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
 
         customButton3.setText("Editar");
@@ -160,6 +166,23 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
     private void customRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_customRadioButton1ActionPerformed
+
+    private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
+        GPS gps = new GPS(
+                "1.2.2.3",
+                (int) UUID.randomUUID().timestamp(),
+                this.customTextField2.getText(),
+                "apagado",
+                this.customTextField4.getText(),
+                this.customChoose1.getSelectedItem().toString(),
+                1.98,
+                1.59,
+                1,
+                1,
+                1
+        );
+        Menu.ListaGPS.agregar(gps);
+    }//GEN-LAST:event_customButton2MouseClicked
 
     /**
      * @param args the command line arguments

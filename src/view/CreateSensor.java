@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.util.UUID;
+import models.SensorTemperatura;
 import utils.Fonts;
 import utils.Colors;
 
@@ -114,6 +116,11 @@ public class CreateSensor extends javax.swing.JFrame {
         jPanel1.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
 
         customButton2.setText("Registrar");
+        customButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton2MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
 
         customButton3.setText("Editar");
@@ -149,6 +156,23 @@ public class CreateSensor extends javax.swing.JFrame {
     private void customRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_customRadioButton1ActionPerformed
+
+    private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
+        SensorTemperatura sensorTemperatura = new SensorTemperatura(
+                "1.2.2.3",
+                (int) UUID.randomUUID().timestamp(),
+                this.customTextField2.getText(),
+                "apagado",
+                this.customTextField4.getText(),
+                this.customChoose1.getSelectedItem().toString(),
+                10,
+                this.customRadioButton1.isSelected() ? "F" : "C",
+                0,
+                100,
+                this.jTextArea1.getText()
+        );
+        Menu.ListaGPS.agregar(sensorTemperatura);
+    }//GEN-LAST:event_customButton2MouseClicked
 
     /**
      * @param args the command line arguments

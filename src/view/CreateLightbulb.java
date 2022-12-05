@@ -4,6 +4,9 @@
  */
 package view;
 
+import java.awt.Color;
+import java.util.UUID;
+import models.FocoInteligente;
 import utils.Fonts;
 import utils.Colors;
 
@@ -95,6 +98,11 @@ public class CreateLightbulb extends javax.swing.JFrame {
         jPanel1.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
 
         customButton2.setText("Registrar");
+        customButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton2MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
 
         customButton3.setText("Editar");
@@ -146,6 +154,22 @@ public class CreateLightbulb extends javax.swing.JFrame {
     private void customTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_customTextField6ActionPerformed
+
+    private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
+        FocoInteligente focoInteligente = new FocoInteligente(
+                (int) UUID.randomUUID().timestamp(),
+                this.customTextField2.getText(),
+                "apagado",
+                this.customTextField4.getText(),
+                this.customChoose1.getSelectedItem().toString(),
+                "1.2.2.3",
+                Integer.parseInt(this.customTextField5.getText()),
+                Integer.parseInt(this.customTextField6.getText()),
+                new Color(10, 10, 10),
+                10,
+                10
+        );
+    }//GEN-LAST:event_customButton2MouseClicked
 
     /**
      * @param args the command line arguments

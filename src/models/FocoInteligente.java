@@ -9,8 +9,8 @@ public class FocoInteligente extends DispositivoIOT{
     private int intensidadRegulada; //lumenes
     private double tiempoDeVida;  //restante estimado
 
-    FocoInteligente(){  super();  }
-    FocoInteligente(int id, String ip, String estadoActividad, String nombre, String modelo, String versionFirmware, int intensidadMaxima, int potenciaDeConsumo, Color rgb, int intensidadRegulada, double tiempoDeVida) {
+    public FocoInteligente(){  super();  }
+    public FocoInteligente(int id, String ip, String estadoActividad, String nombre, String modelo, String versionFirmware, int intensidadMaxima, int potenciaDeConsumo, Color rgb, int intensidadRegulada, double tiempoDeVida) {
         super(id, ip, estadoActividad, nombre, modelo, versionFirmware);
         this.intensidadMaxima = intensidadMaxima;
         this.potenciaDeConsumo = potenciaDeConsumo;

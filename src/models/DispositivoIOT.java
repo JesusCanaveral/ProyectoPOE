@@ -7,15 +7,26 @@ public class DispositivoIOT {
     private String nombre;
     private String modelo;
     private String versionFirmware;
+    private DispositivoIOT siguiente;
 
-    DispositivoIOT(){  }
-    DispositivoIOT(int id, String ip, String estadoActividad, String nombre, String modelo, String versionFirmware) {
+
+    public DispositivoIOT(){  }
+    public DispositivoIOT(int id, String ip, String estadoActividad, String nombre, String modelo, String versionFirmware) {
         this.id = id;
         this.ip = ip;
         this.estadoActividad = estadoActividad;
         this.nombre = nombre;
         this.modelo = modelo;
         this.versionFirmware = versionFirmware;
+        this.siguiente = null;
+    }
+    
+    public DispositivoIOT getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(DispositivoIOT siguiente) {
+        this.siguiente = siguiente;
     }
 
     public int getId() {
@@ -57,4 +68,14 @@ public class DispositivoIOT {
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
+
+    public String getVersionFirmware() {
+        return versionFirmware;
+    }
+
+    public void setVersionFirmware(String versionFirmware) {
+        this.versionFirmware = versionFirmware;
+    }
+    
+    
 }

@@ -7,8 +7,8 @@ public class VehiculoRefrigerado {
     private GPS gps;
     private ActuadorTemperatura actuadorTemperatura;
 
-    VehiculoRefrigerado(){  }
-    VehiculoRefrigerado(int id, String modelo, SensorTemperatura sensorTemperatura, GPS gps, ActuadorTemperatura actuadorTemperatura) {
+    public VehiculoRefrigerado(){  }
+    public VehiculoRefrigerado(int id, String modelo, SensorTemperatura sensorTemperatura, GPS gps, ActuadorTemperatura actuadorTemperatura) {
         this.id = id;
         this.modelo = modelo;
         this.sensorTemperatura = sensorTemperatura;

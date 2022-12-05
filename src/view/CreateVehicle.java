@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.util.UUID;
+import models.*;
 import utils.Fonts;
 import utils.Colors;
 
@@ -73,6 +75,11 @@ public class CreateVehicle extends javax.swing.JFrame {
         jPanel1.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
 
         customButton2.setText("Registrar");
+        customButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton2MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
 
         customButton3.setText("Editar");
@@ -124,6 +131,16 @@ public class CreateVehicle extends javax.swing.JFrame {
     private void customChoose4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customChoose4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_customChoose4ActionPerformed
+
+    private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
+        VehiculoRefrigerado vehiculoRefrigerado = new VehiculoRefrigerado(
+                (int) UUID.randomUUID().timestamp(),
+                this.customChoose3.getSelectedItem().toString(),
+                (SensorTemperatura) this.customChoose1.getSelectedItem(),
+                (GPS) this.customChoose2.getSelectedItem(),
+                (ActuadorTemperatura)this.customChoose4.getSelectedItem()
+        );
+    }//GEN-LAST:event_customButton2MouseClicked
 
     /**
      * @param args the command line arguments

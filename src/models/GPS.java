@@ -7,8 +7,8 @@ public class GPS extends DispositivoIOT{
     private double precision;
     private double tiempoActualizacion;
 
-    GPS(){  super();  }
-    GPS(String versionFirmware, int id, String ip, String estadoActividad, String nombre, String modelo, double latitud, double longitud, double tiempoActivo, double precision, double tiempoActualizacion) {
+    public GPS(){  super();  }
+    public GPS(String versionFirmware, int id, String ip, String estadoActividad, String nombre, String modelo, double latitud, double longitud, double tiempoActivo, double precision, double tiempoActualizacion) {
         super(id, ip, estadoActividad, nombre, modelo, versionFirmware);
         this.latitud = latitud;
         this.longitud = longitud;
