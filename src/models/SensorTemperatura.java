@@ -1,3 +1,5 @@
+package models;
+
 public class SensorTemperatura extends DispositivoIOT{
     private double temperatura;
     private String unidades;

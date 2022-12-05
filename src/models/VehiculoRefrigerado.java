@@ -1,3 +1,5 @@
+package models;
+
 public class VehiculoRefrigerado {
     private int id;
     private String modelo;

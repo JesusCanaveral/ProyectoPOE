@@ -1,3 +1,5 @@
+package models;
+
 public class GPS extends DispositivoIOT{
     private double latitud;
     private double longitud;

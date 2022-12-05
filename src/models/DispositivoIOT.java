@@ -1,3 +1,5 @@
+package models;
+
 public class DispositivoIOT {
     private int id;
     private String ip;

@@ -1,3 +1,5 @@
+package models;
+
 public class ActuadorTemperatura extends DispositivoIOT{
     private double umbralTemperaturaMinima;
     private double umbralTemperaturaMaxima;
