@@ -97,20 +97,24 @@ public class ListaEnlazada {
         }
         Object [][] result = new Object[contador][10];
         switch(c){
-            case 'g': 
+            case 'g':
+                System.out.println("Aqui ando");
+                System.out.println(aux);
                 GPS gps = (GPS) primero;
+                System.out.println(gps);
                 contador = 0;
-                while(aux != null){
-                    result[contador][1] = gps.getId();
-                    result[contador][2] = gps.getIp();
-                    result[contador][3] = gps.getEstadoActividad();
-                    result[contador][4] = gps.getNombre();
-                    result[contador][5] = gps.getVersionFirmware();
-                    result[contador][6] = String.valueOf(gps.getTiempoActualizacion());
-                    result[contador][7] = String.valueOf(gps.getLatitud());
-                    result[contador][8] = String.valueOf(gps.getLongitud());
-                    result[contador][9] = String.valueOf(gps.getPrecision());
-                    result[contador][10] = String.valueOf(gps.getTiempoActivo());
+                while(gps != null){
+                    System.out.println(gps.getIp());
+                    result[contador][0] = gps.getId();
+                    result[contador][1] = gps.getIp();
+                    result[contador][2] = gps.getEstadoActividad();
+                    result[contador][3] = gps.getNombre();
+                    result[contador][4] = gps.getVersionFirmware();
+                    result[contador][5] = String.valueOf(gps.getTiempoActualizacion());
+                    result[contador][6] = String.valueOf(gps.getLatitud());
+                    result[contador][7] = String.valueOf(gps.getLongitud());
+                    result[contador][8] = String.valueOf(gps.getPrecision());
+                    result[contador][9] = String.valueOf(gps.getTiempoActivo());
                     gps = (GPS) gps.getSiguiente();
                     contador++;
                 }
@@ -118,17 +122,17 @@ public class ListaEnlazada {
             case 'f':
                 FocoInteligente foco = (FocoInteligente) primero;
                 contador = 0;
-                while(aux != null){
-                    result[contador][1] = foco.getId();
-                    result[contador][2] = foco.getIp();
-                    result[contador][3] = foco.getEstadoActividad();
-                    result[contador][4] = foco.getNombre();
-                    result[contador][5] = foco.getVersionFirmware();
-                    result[contador][6] = String.valueOf(foco.getIntensidadMaxima());
-                    result[contador][7] = String.valueOf(foco.getIntensidadRegulada());
-                    result[contador][8] = foco.getRgb().toString();
-                    result[contador][9] = String.valueOf(foco.getPotenciaDeConsumo());
-                    result[contador][10] = String.valueOf(foco.getTiempoDeVida());
+                while(foco != null){
+                    result[contador][0] = foco.getId();
+                    result[contador][1] = foco.getIp();
+                    result[contador][2] = foco.getEstadoActividad();
+                    result[contador][3] = foco.getNombre();
+                    result[contador][4] = foco.getVersionFirmware();
+                    result[contador][5] = String.valueOf(foco.getIntensidadMaxima());
+                    result[contador][6] = String.valueOf(foco.getIntensidadRegulada());
+                    result[contador][7] = foco.getRgb().toString();
+                    result[contador][8] = String.valueOf(foco.getPotenciaDeConsumo());
+                    result[contador][9] = String.valueOf(foco.getTiempoDeVida());
                     foco = (FocoInteligente) foco.getSiguiente();
                     contador++;
                 }
@@ -136,17 +140,17 @@ public class ListaEnlazada {
             case 'a': 
                 ActuadorTemperatura act = (ActuadorTemperatura) primero;
                 contador = 0;
-                while(aux != null){
-                    result[contador][1] = act.getId();
-                    result[contador][2] = act.getIp();
-                    result[contador][3] = act.getEstadoActividad();
-                    result[contador][4] = act.getNombre();
-                    result[contador][5] = act.getVersionFirmware();
-                    result[contador][6] = String.valueOf(act.getPosicion());
-                    result[contador][7] = String.valueOf(act.getTiempoRespuesta());
-                    result[contador][8] = String.valueOf(act.getUmbralTemperaturaMinima());
-                    result[contador][9] = String.valueOf(act.getUmbralTemperaturaMaxima());
-                    result[contador][10] = act.getTipoActuador();
+                while(act != null){
+                    result[contador][0] = act.getId();
+                    result[contador][1] = act.getIp();
+                    result[contador][2] = act.getEstadoActividad();
+                    result[contador][3] = act.getNombre();
+                    result[contador][4] = act.getVersionFirmware();
+                    result[contador][5] = String.valueOf(act.getPosicion());
+                    result[contador][6] = String.valueOf(act.getTiempoRespuesta());
+                    result[contador][7] = String.valueOf(act.getUmbralTemperaturaMinima());
+                    result[contador][8] = String.valueOf(act.getUmbralTemperaturaMaxima());
+                    result[contador][9] = act.getTipoActuador();
                     act = (ActuadorTemperatura) act.getSiguiente();
                     contador++;
                 }
@@ -154,17 +158,17 @@ public class ListaEnlazada {
             case 's': 
                 SensorTemperatura sns = (SensorTemperatura) primero;
                 contador = 0;
-                while(aux != null){
-                    result[contador][1] = sns.getId();
-                    result[contador][2] = sns.getIp();
-                    result[contador][3] = sns.getEstadoActividad();
-                    result[contador][4] = sns.getNombre();
-                    result[contador][5] = sns.getVersionFirmware();
-                    result[contador][6] = String.valueOf(sns.getTemperatura());
-                    result[contador][7] = sns.getUnidades();
-                    result[contador][8] = String.valueOf(sns.getTemperaturaMaxima());
-                    result[contador][9] = String.valueOf(sns.getTemperaturaMinima());
-                    result[contador][10] = sns.getTipoSensor();
+                while(sns != null){
+                    result[contador][0] = sns.getId();
+                    result[contador][1] = sns.getIp();
+                    result[contador][2] = sns.getEstadoActividad();
+                    result[contador][3] = sns.getNombre();
+                    result[contador][4] = sns.getVersionFirmware();
+                    result[contador][5] = String.valueOf(sns.getTemperatura());
+                    result[contador][6] = sns.getUnidades();
+                    result[contador][7] = String.valueOf(sns.getTemperaturaMaxima());
+                    result[contador][8] = String.valueOf(sns.getTemperaturaMinima());
+                    result[contador][9] = sns.getTipoSensor();
                     sns = (SensorTemperatura) sns.getSiguiente();
                     contador++;
                 }

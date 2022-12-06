@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import utils.Colors;
 import utils.Fonts;
 public class TablasFocos extends javax.swing.JFrame {
@@ -13,6 +15,13 @@ public class TablasFocos extends javax.swing.JFrame {
      */
     public TablasFocos() {
         initComponents();
+        String[] columns = new String[]{
+            "Id", "Ip", "Edo. Act.", "Nombre", "Firmware", "I. Max", "I. Reg", "RGB", "Consumo", "Tiempo de Vida"
+        };
+        JTable table = new javax.swing.JTable(controllers.ControllerLightbulb.listaFoco.toBidimensionalArray('f'), columns); 
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(table);
+        jPanel1.add(scrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 650, -1));
     }
 
     /**
@@ -26,13 +35,10 @@ public class TablasFocos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -43,39 +49,6 @@ public class TablasFocos extends javax.swing.JFrame {
         jLabel1.setForeground(Colors.darkGreen);
         jLabel1.setText("Focos Inteligentes registrados");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
-
-        jScrollPane1.setBackground(Colors.trans);
-        jScrollPane1.setFont(Fonts.normal);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "IP", "Estado", "Nombre", "Version firmware", "Intensidad maxima", "Intensidad", "RGB", "Potencia de consumo", "Tiempo de vida"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 650, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,7 +103,5 @@ public class TablasFocos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
