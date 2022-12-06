@@ -241,6 +241,8 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
                     Double.parseDouble(customTextField1.getText())
                 );
                 ControllerGps.add(gpsItem);
+                JOptionPane.showMessageDialog(null, 
+                        "GPS agregado con exito");
             }
         }
         
@@ -313,6 +315,8 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
                     Double.parseDouble(customTextField1.getText())
                 );
                 ControllerGps.modify(ip,gpsItem);
+                JOptionPane.showMessageDialog(null, 
+                        "GPS modificado con exito");
             }
         }
     }//GEN-LAST:event_customButton3MouseClicked
