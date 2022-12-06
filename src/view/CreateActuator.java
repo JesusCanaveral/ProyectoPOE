@@ -4,6 +4,7 @@
  */
 package view;
 
+import controllers.ControllerActuator;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import models.ActuadorTemperatura;
@@ -130,6 +131,11 @@ public class CreateActuator extends javax.swing.JFrame {
         jPanel1.add(customButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
 
         customButton3.setText("Editar");
+        customButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton3MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 130, 40));
 
         customButton4.setText("Buscar");
@@ -183,15 +189,15 @@ public class CreateActuator extends javax.swing.JFrame {
                 this.customRadioButton1.isSelected() ? 1 : 0,
                 this.jTextArea1.getText()
         );
-        Menu.ListaActuadores.agregar(actuador);
+        ControllerActuator.add(actuador);
         JOptionPane.showMessageDialog(this, "Agregado correctamente");
-        Menu.ListaActuadores.imprimir();
+        ControllerActuator.listaActuador.imprimir();
         this.clear();
     }//GEN-LAST:event_customButton2MouseClicked
 
     private void customButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton4MouseClicked
         var ip = customTextField2.getText();
-        var actuador = (ActuadorTemperatura) Menu.ListaActuadores.buscar(ip);
+        var actuador = (ActuadorTemperatura) ControllerActuator.search(ip);
         if (null == actuador) {
             JOptionPane.showMessageDialog(this, "No se encuentra","No hay",JOptionPane.WARNING_MESSAGE);
             return;
@@ -208,16 +214,30 @@ public class CreateActuator extends javax.swing.JFrame {
     }//GEN-LAST:event_customButton4MouseClicked
 
     private void customButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton1MouseClicked
-        var wasDeleted = Menu.ListaActuadores.eliminar(customTextField2.getText());
-        if(wasDeleted)
-        {
-            JOptionPane.showMessageDialog(this, "Eliminado","Se ha eliminado", JOptionPane.INFORMATION_MESSAGE);
-        }else
-        {
-            JOptionPane.showMessageDialog(this, "No encontrado", "No se ha encontrado",JOptionPane.WARNING_MESSAGE);
-        }
-        Menu.ListaActuadores.imprimir();
+        ControllerActuator.delete(customTextField2.getText());
+        JOptionPane.showMessageDialog(this, "Eliminado","Se ha eliminado", JOptionPane.INFORMATION_MESSAGE);
+        ControllerActuator.listaActuador.imprimir();
+        clear();
     }//GEN-LAST:event_customButton1MouseClicked
+
+    private void customButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton3MouseClicked
+        var actuador = new ActuadorTemperatura(
+                UUID.randomUUID().toString(),
+                this.customTextField2.getText(),
+                "apagado",
+                this.customTextField4.getText(),
+                this.customChoose1.getSelectedItem().toString(),
+                "1.2.2.3",
+                0,
+                100,
+                0,
+                this.customRadioButton1.isSelected() ? 1 : 0,
+                this.jTextArea1.getText()
+        );
+        ControllerActuator.edit(actuador.getIp(), actuador);
+        JOptionPane.showMessageDialog(this, "Actualizado","Se ha actualizado", JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_customButton3MouseClicked
 
     private void clear()
     {
@@ -226,7 +246,7 @@ public class CreateActuator extends javax.swing.JFrame {
         jTextArea1.setText("");
         customChoose1.setSelectedItem("");
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private components.CustomButton customButton1;
