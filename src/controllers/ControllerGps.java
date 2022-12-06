@@ -14,14 +14,15 @@ import models.ListaEnlazada;
 public class ControllerGps {
     public static ListaEnlazada listaGPS = new ListaEnlazada();
     
-    public void add(GPS itemGPS){
+    public static void add(GPS itemGPS){
         listaGPS.agregar(itemGPS);
     }
     
-    public GPS search(String ip){
+    public static GPS search(String ip){
         return (GPS)listaGPS.buscar(ip);
     }
-    public void delete(String ip){
+    
+    public static void delete(String ip){
         listaGPS.eliminar(ip);
     }
 }
