@@ -1,14 +1,14 @@
 package models;
 
 public class VehiculoRefrigerado {
-    private int id;
+    private String id;
     private String modelo;
     private SensorTemperatura sensorTemperatura;
     private GPS gps;
     private ActuadorTemperatura actuadorTemperatura;
 
     public VehiculoRefrigerado(){  }
-    public VehiculoRefrigerado(int id, String modelo, SensorTemperatura sensorTemperatura, GPS gps, ActuadorTemperatura actuadorTemperatura) {
+    public VehiculoRefrigerado(String id, String modelo, SensorTemperatura sensorTemperatura, GPS gps, ActuadorTemperatura actuadorTemperatura) {
         this.id = id;
         this.modelo = modelo;
         this.sensorTemperatura = sensorTemperatura;
@@ -16,11 +16,11 @@ public class VehiculoRefrigerado {
         this.actuadorTemperatura = actuadorTemperatura;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

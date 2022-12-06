@@ -160,7 +160,7 @@ public class CreateActuator extends javax.swing.JFrame {
     private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
 
         var actuador = new ActuadorTemperatura(
-                (int) UUID.randomUUID().timestamp(),
+                UUID.randomUUID().toString(),
                 this.customTextField2.getText(),
                 "apagado",
                 this.customTextField4.getText(),

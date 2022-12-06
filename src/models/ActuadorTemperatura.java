@@ -8,7 +8,7 @@ public class ActuadorTemperatura extends DispositivoIOT{
     private String tipoActuador;
 
     public ActuadorTemperatura(){  super();  }
-    public ActuadorTemperatura(int id, String ip, String estadoActividad, String nombre, String modelo, String versionFirmware, double umbralTemperaturaMinima, double umbralTemperaturaMaxima, float posicion, float tiempoRespuesta, String tipoActuador) {
+    public ActuadorTemperatura(String id, String ip, String estadoActividad, String nombre, String modelo, String versionFirmware, double umbralTemperaturaMinima, double umbralTemperaturaMaxima, float posicion, float tiempoRespuesta, String tipoActuador) {
         super(id, ip, estadoActividad, nombre, modelo, versionFirmware);
         this.umbralTemperaturaMinima = umbralTemperaturaMinima;
         this.umbralTemperaturaMaxima = umbralTemperaturaMaxima;

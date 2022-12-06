@@ -157,7 +157,7 @@ public class CreateLightbulb extends javax.swing.JFrame {
 
     private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
         FocoInteligente focoInteligente = new FocoInteligente(
-                (int) UUID.randomUUID().timestamp(),
+                UUID.randomUUID().toString(),
                 this.customTextField2.getText(),
                 "apagado",
                 this.customTextField4.getText(),

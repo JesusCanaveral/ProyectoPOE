@@ -134,7 +134,7 @@ public class CreateVehicle extends javax.swing.JFrame {
 
     private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
         VehiculoRefrigerado vehiculoRefrigerado = new VehiculoRefrigerado(
-                (int) UUID.randomUUID().timestamp(),
+                UUID.randomUUID().toString(),
                 this.customChoose3.getSelectedItem().toString(),
                 (SensorTemperatura) this.customChoose1.getSelectedItem(),
                 (GPS) this.customChoose2.getSelectedItem(),

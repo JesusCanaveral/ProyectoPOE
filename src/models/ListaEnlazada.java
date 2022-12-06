@@ -34,7 +34,7 @@ public class ListaEnlazada {
         var aux = primero;
         while (null != aux)
         {
-            
+            System.out.println(aux.getNombre());
             aux = aux.getSiguiente();
         }
     }

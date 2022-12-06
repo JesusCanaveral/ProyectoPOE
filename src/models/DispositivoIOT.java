@@ -1,7 +1,7 @@
 package models;
 
 public class DispositivoIOT {
-    private int id;
+    private String id;
     private String ip;
     private String estadoActividad;
     private String nombre;
@@ -11,7 +11,7 @@ public class DispositivoIOT {
 
 
     public DispositivoIOT(){  }
-    public DispositivoIOT(int id, String ip, String estadoActividad, String nombre, String modelo, String versionFirmware) {
+    public DispositivoIOT(String id, String ip, String estadoActividad, String nombre, String modelo, String versionFirmware) {
         this.id = id;
         this.ip = ip;
         this.estadoActividad = estadoActividad;
@@ -29,11 +29,11 @@ public class DispositivoIOT {
         this.siguiente = siguiente;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

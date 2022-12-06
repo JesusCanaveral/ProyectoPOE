@@ -170,7 +170,7 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
     private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
         GPS gps = new GPS(
                 "1.2.2.3",
-                (int) UUID.randomUUID().timestamp(),
+                UUID.randomUUID().toString(),
                 this.customTextField2.getText(),
                 "apagado",
                 this.customTextField4.getText(),
