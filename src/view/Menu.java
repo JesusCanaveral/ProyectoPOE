@@ -36,18 +36,18 @@ public class Menu extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        cAct = new javax.swing.JMenuItem();
+        cSens = new javax.swing.JMenuItem();
+        CVeh = new javax.swing.JMenuItem();
+        cBomb = new javax.swing.JMenuItem();
+        cGPS = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        mAct = new javax.swing.JMenuItem();
+        mSens = new javax.swing.JMenuItem();
+        mVeh = new javax.swing.JMenuItem();
+        mBomb = new javax.swing.JMenuItem();
+        mGPS = new javax.swing.JMenuItem();
+        MMap = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/c220.png"))); // NOI18N
@@ -90,40 +90,50 @@ public class Menu extends javax.swing.JFrame {
         jMenu1.setText("Crear");
         jMenu1.setOpaque(true);
 
-        jMenuItem1.setText("Actuador");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        cAct.setText("Actuador");
+        cAct.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseClicked(evt);
+                cActMouseClicked(evt);
             }
         });
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        cAct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                cActActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(cAct);
 
-        jMenuItem2.setText("Sensor");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        cSens.setText("Sensor");
+        cSens.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                cSensActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(cSens);
 
-        jMenuItem3.setText("Vehiculo");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setText("Bombilla");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        CVeh.setText("Vehiculo");
+        CVeh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                CVehActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(CVeh);
 
-        jMenuItem5.setText("GPS");
-        jMenu1.add(jMenuItem5);
+        cBomb.setText("Bombilla");
+        cBomb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBombActionPerformed(evt);
+            }
+        });
+        jMenu1.add(cBomb);
+
+        cGPS.setText("GPS");
+        cGPS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cGPSActionPerformed(evt);
+            }
+        });
+        jMenu1.add(cGPS);
 
         jMenuBar1.add(jMenu1);
 
@@ -132,23 +142,53 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.setText("Mostrar");
         jMenu2.setOpaque(true);
 
-        jMenuItem6.setText("Actuadores");
-        jMenu2.add(jMenuItem6);
+        mAct.setText("Actuadores");
+        mAct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mActActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mAct);
 
-        jMenuItem7.setText("Sensores");
-        jMenu2.add(jMenuItem7);
+        mSens.setText("Sensores");
+        mSens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mSensActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mSens);
 
-        jMenuItem8.setText("Vehiculos");
-        jMenu2.add(jMenuItem8);
+        mVeh.setText("Vehiculos");
+        mVeh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mVehActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mVeh);
 
-        jMenuItem9.setText("Bombillas");
-        jMenu2.add(jMenuItem9);
+        mBomb.setText("Bombillas");
+        mBomb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mBombActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mBomb);
 
-        jMenuItem10.setText("GPS");
-        jMenu2.add(jMenuItem10);
+        mGPS.setText("GPS");
+        mGPS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mGPSActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mGPS);
 
-        jMenuItem11.setText("Mapa");
-        jMenu2.add(jMenuItem11);
+        MMap.setText("Mapa");
+        MMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MMapActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MMap);
 
         jMenuBar1.add(jMenu2);
 
@@ -163,21 +203,73 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void cBombActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBombActionPerformed
+        this.CreateAndAddInternalFrame(new CreateLightbulb());
+    }//GEN-LAST:event_cBombActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void cActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cActActionPerformed
         
         this.CreateAndAddInternalFrame(new CreateActuator());
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_cActActionPerformed
 
-    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
-    }//GEN-LAST:event_jMenuItem1MouseClicked
+    private void cActMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cActMouseClicked
+    }//GEN-LAST:event_cActMouseClicked
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void cSensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cSensActionPerformed
         this.CreateAndAddInternalFrame(new CreateSensor());
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_cSensActionPerformed
+
+    private void mActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mActActionPerformed
+        this.CreateAndAddInternalFrame(new TablasActuadores());
+    }//GEN-LAST:event_mActActionPerformed
+
+    private void CVehActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CVehActionPerformed
+        this.CreateAndAddInternalFrame(new CreateVehicle());
+    }//GEN-LAST:event_CVehActionPerformed
+
+    private void cGPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cGPSActionPerformed
+        this.CreateAndAddInternalFrame(new CreateDeviceGPS());
+    }//GEN-LAST:event_cGPSActionPerformed
+
+    private void mSensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSensActionPerformed
+        this.CreateAndAddInternalFrame(new TablasSensores());
+    }//GEN-LAST:event_mSensActionPerformed
+
+    private void mVehActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mVehActionPerformed
+        this.CreateAndAddInternalFrame(new TablasVehiculo());
+    }//GEN-LAST:event_mVehActionPerformed
+
+    private void mBombActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBombActionPerformed
+        this.CreateAndAddInternalFrame(new TablasFocos());
+    }//GEN-LAST:event_mBombActionPerformed
+
+    private void mGPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mGPSActionPerformed
+        this.CreateAndAddInternalFrame(new TablasGPS());
+    }//GEN-LAST:event_mGPSActionPerformed
+
+    private void MMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MMapActionPerformed
+        this.CreateAndAddInternalFrame(new Map());
+    }//GEN-LAST:event_MMapActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        CreateAndAddInternalFrame(new CreateVehicle());
+    }                                          
+
+        // TODO add your handling code here://GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        this.CreateAndAddInternalFrame(new CreateDeviceGPS());
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMostrarBombillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMostrarBombillasActionPerformed
+        // TODO add your handling code here:
+        this.CreateAndAddInternalFrame(new TablasFocos());
+    }//GEN-LAST:event_jMostrarBombillasActionPerformed
 
     private void CreateAndAddInternalFrame(JFrame frame)
     {
@@ -220,27 +312,26 @@ public class Menu extends javax.swing.JFrame {
         });
     }
 
-    public static ListaEnlazada ListaGPS = new ListaEnlazada();    
-    public static ListaEnlazada ListaActuadores = new ListaEnlazada();
     public static ListaEnlazada ListaSensores = new ListaEnlazada();
+    public static ListaEnlazada ListaFocos = new ListaEnlazada();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CVeh;
+    private javax.swing.JMenuItem MMap;
+    private javax.swing.JMenuItem cAct;
+    private javax.swing.JMenuItem cBomb;
+    private javax.swing.JMenuItem cGPS;
+    private javax.swing.JMenuItem cSens;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem mAct;
+    private javax.swing.JMenuItem mBomb;
+    private javax.swing.JMenuItem mGPS;
+    private javax.swing.JMenuItem mSens;
+    private javax.swing.JMenuItem mVeh;
     // End of variables declaration//GEN-END:variables
 }

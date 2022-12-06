@@ -4,8 +4,11 @@
  */
 package view;
 
+import controllers.ControllerLightbulb;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import models.FocoInteligente;
 import utils.Fonts;
 import utils.Colors;
@@ -15,6 +18,12 @@ import utils.Colors;
  * @author Usuario
  */
 public class CreateLightbulb extends javax.swing.JFrame {
+    
+    private static final String IPV4_PATTERN_ALLOW_LEADING_ZERO =
+            "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
 
     /**
      * Creates new form CreateDeviceGPS
@@ -42,10 +51,10 @@ public class CreateLightbulb extends javax.swing.JFrame {
         customTextField2 = new components.CustomTextField();
         customTextField4 = new components.CustomTextField();
         customChoose1 = new components.CustomChoose();
-        customButton1 = new components.CustomButton();
-        customButton2 = new components.CustomButton();
-        customButton3 = new components.CustomButton();
-        customButton4 = new components.CustomButton();
+        eliminarFocosBtn = new components.CustomButton();
+        registrarFocosBtn = new components.CustomButton();
+        editarFocosBtn = new components.CustomButton();
+        buscarFocosBtn = new components.CustomButton();
         customTextField5 = new components.CustomTextField();
         jLabel7 = new javax.swing.JLabel();
         customTextField6 = new components.CustomTextField();
@@ -82,6 +91,17 @@ public class CreateLightbulb extends javax.swing.JFrame {
         jLabel6.setFont(Fonts.normal);
         jLabel6.setText("Intensidad maxima");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
+
+        customTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customTextField2ActionPerformed(evt);
+            }
+        });
+        customTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customTextField2KeyTyped(evt);
+            }
+        });
         jPanel1.add(customTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 680, -1));
 
         customTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -94,22 +114,44 @@ public class CreateLightbulb extends javax.swing.JFrame {
         customChoose1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zigbee", " " }));
         jPanel1.add(customChoose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 680, -1));
 
-        customButton1.setText("Eliminar");
-        jPanel1.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
-
-        customButton2.setText("Registrar");
-        customButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        eliminarFocosBtn.setText("Eliminar");
+        eliminarFocosBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                customButton2MouseClicked(evt);
+                eliminarFocosBtnMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                eliminarFocosBtnMousePressed(evt);
             }
         });
-        jPanel1.add(customButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
+        jPanel1.add(eliminarFocosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
+        eliminarFocosBtn.setCursor(new Cursor(HAND_CURSOR));
 
-        customButton3.setText("Editar");
-        jPanel1.add(customButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 130, 40));
+        registrarFocosBtn.setText("Registrar");
+        registrarFocosBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registrarFocosBtnMouseClicked(evt);
+            }
+        });
+        registrarFocosBtn.setCursor(new Cursor(HAND_CURSOR));
+        jPanel1.add(registrarFocosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
 
-        customButton4.setText("Buscar");
-        jPanel1.add(customButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 130, 40));
+        editarFocosBtn.setText("Editar");
+        editarFocosBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editarFocosBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(editarFocosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 130, 40));
+        editarFocosBtn.setCursor(new Cursor(HAND_CURSOR));
+
+        buscarFocosBtn.setText("Buscar");
+        buscarFocosBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarFocosBtnMouseClicked(evt);
+            }
+        });
+        jPanel1.add(buscarFocosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 130, 40));
+        buscarFocosBtn.setCursor(new Cursor(HAND_CURSOR));
 
         customTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,21 +197,80 @@ public class CreateLightbulb extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_customTextField6ActionPerformed
 
-    private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
-        FocoInteligente focoInteligente = new FocoInteligente(
+    private void registrarFocosBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarFocosBtnMouseClicked
+        try{
+            
+            FocoInteligente focoInteligente = new FocoInteligente(
                 UUID.randomUUID().toString(),
                 this.customTextField2.getText(),
                 "apagado",
-                this.customTextField4.getText(),
+                this.customTextField5.getText(),
                 this.customChoose1.getSelectedItem().toString(),
                 "1.2.2.3",
-                Integer.parseInt(this.customTextField5.getText()),
+                Integer.parseInt(this.customTextField4.getText()),
                 Integer.parseInt(this.customTextField6.getText()),
                 new Color(10, 10, 10),
                 10,
                 10
         );
-    }//GEN-LAST:event_customButton2MouseClicked
+            ControllerLightbulb.add(focoInteligente);
+            limpiar();
+            JOptionPane.showMessageDialog(this, "Se ha agregado correctamente");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ocurrio un error, intenta nuevamente");
+        }
+    }//GEN-LAST:event_registrarFocosBtnMouseClicked
+
+    private void customTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customTextField2ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_customTextField2ActionPerformed
+
+    private void editarFocosBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarFocosBtnMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_editarFocosBtnMouseClicked
+
+    private void buscarFocosBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarFocosBtnMouseClicked
+        // TODO add your handling code here:
+        var ip = customTextField2.getText();
+        var foquito = (FocoInteligente) ControllerLightbulb.search(ip);
+        if (foquito == null) {
+            JOptionPane.showMessageDialog(this, "No se tienen registros relacionados a la busqueda","Error",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        customTextField2.setText(foquito.getIp());
+        customTextField5.setText(foquito.getNombre());
+        customChoose1.setSelectedItem(foquito.getModelo());
+        customTextField6.setText(String.valueOf(foquito.getPotenciaDeConsumo()));
+        customTextField4.setText(String.valueOf(foquito.getIntensidadMaxima()));
+    }//GEN-LAST:event_buscarFocosBtnMouseClicked
+
+    private void eliminarFocosBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarFocosBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarFocosBtnMouseClicked
+
+    private void customTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextField2KeyTyped
+        // TODO add your handling code here:
+        String ip=customTextField2.getText();
+        if(ip.matches(IPV4_PATTERN_ALLOW_LEADING_ZERO)){
+            System.out.println("si");
+        }else{
+            System.out.println("no");
+        }
+    }//GEN-LAST:event_customTextField2KeyTyped
+
+    private void eliminarFocosBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarFocosBtnMousePressed
+        // TODO add your handling code here:
+        try{
+            ControllerLightbulb.delete(customTextField2.getText());
+            JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente");
+            limpiar();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ocurrio un error");
+        }
+    }//GEN-LAST:event_eliminarFocosBtnMousePressed
 
     /**
      * @param args the command line arguments
@@ -210,16 +311,15 @@ public class CreateLightbulb extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private components.CustomButton buscarFocosBtn;
     private javax.swing.ButtonGroup buttonGroup1;
-    private components.CustomButton customButton1;
-    private components.CustomButton customButton2;
-    private components.CustomButton customButton3;
-    private components.CustomButton customButton4;
     private components.CustomChoose customChoose1;
     private components.CustomTextField customTextField2;
     private components.CustomTextField customTextField4;
     private components.CustomTextField customTextField5;
     private components.CustomTextField customTextField6;
+    private components.CustomButton editarFocosBtn;
+    private components.CustomButton eliminarFocosBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -227,5 +327,17 @@ public class CreateLightbulb extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private components.CustomButton registrarFocosBtn;
     // End of variables declaration//GEN-END:variables
+
+
+public void limpiar(){
+    customTextField2.setText("");
+    customChoose1.setSelectedItem("");
+    customTextField5.setText("");
+    customTextField6.setText("");
+    customTextField4.setText("");
+}
+
+
 }

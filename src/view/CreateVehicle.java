@@ -4,6 +4,9 @@
  */
 package view;
 
+import controllers.ControllerActuator;
+import controllers.ControllerSensor;
+import controllers.ControllerVehicule;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import models.*;
@@ -21,6 +24,16 @@ public class CreateVehicle extends javax.swing.JFrame {
      */
     public CreateVehicle() {
         initComponents();
+        
+        for(var iot : ControllerActuator.listaActuador.listar())
+        {
+            this.customChoose4.addItem(iot.getNombre() + " - " + iot.getIp());
+        }
+        
+        for(var iot : ControllerSensor.listaSensor.listar())
+        {
+            this.customChoose1.addItem(iot.getNombre() + " - " + iot.getIp());
+        }
     }
 
     /**
@@ -149,15 +162,24 @@ public class CreateVehicle extends javax.swing.JFrame {
     }//GEN-LAST:event_customChoose4ActionPerformed
 
     private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
+        String actuatorIP = this.customChoose4.getSelectedItem().toString().split(" - ")[1];
+        var actuator = (ActuadorTemperatura) ControllerActuator.search(actuatorIP);
+        
+        String sensorIP = this.customChoose1.getSelectedItem().toString().split(" - ")[1];
+        var sensor = (SensorTemperatura) ControllerSensor.search(sensorIP);
+
+        
         VehiculoRefrigerado vehiculoRefrigerado = new VehiculoRefrigerado(
                 UUID.randomUUID().toString(),
                 this.customChoose3.getSelectedItem().toString(),
-                (SensorTemperatura) this.customChoose1.getSelectedItem(),
-                (GPS) this.customChoose2.getSelectedItem(),
-                (ActuadorTemperatura)this.customChoose4.getSelectedItem()
+                sensor,
+                new GPS(),
+                actuator
         );
         
-        JOptionPane.showConfirmDialog(this, "Se ha añadido correctamente");
+        ControllerVehicule.add(vehiculoRefrigerado);
+        JOptionPane.showMessageDialog(this, "Se ha añadido correctamente");
+        ControllerVehicule.list();
         clear();
     }//GEN-LAST:event_customButton2MouseClicked
 
@@ -168,13 +190,14 @@ public class CreateVehicle extends javax.swing.JFrame {
 
     private void customButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton3MouseClicked
         
-        JOptionPane.showConfirmDialog(this, "Se ha editado correctamente");
+        JOptionPane.showMessageDialog(this, "Se ha editado correctamente");
         clear();
     }//GEN-LAST:event_customButton3MouseClicked
 
     private void customButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton1MouseClicked
         
-        JOptionPane.showConfirmDialog(this, "Se ha eliminado correctamente");
+        ControllerVehicule.delete();
+        JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente");
         clear();
     }//GEN-LAST:event_customButton1MouseClicked
 
@@ -221,10 +244,10 @@ public class CreateVehicle extends javax.swing.JFrame {
     }
     
     private void clear(){
-        customChoose1.setSelectedIndex(1);
-        customChoose2.setSelectedIndex(1);
-        customChoose3.setSelectedIndex(1);
-        customChoose4.setSelectedIndex(1);
+        customChoose1.setSelectedIndex(0);
+        customChoose2.setSelectedIndex(0);
+        customChoose3.setSelectedIndex(0);
+        customChoose4.setSelectedIndex(0);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

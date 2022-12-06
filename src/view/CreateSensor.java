@@ -4,6 +4,7 @@
  */
 package view;
 
+import controllers.ControllerSensor;
 import java.awt.event.KeyEvent;
 import java.util.UUID;
 import javax.swing.JOptionPane;
@@ -203,7 +204,7 @@ public class CreateSensor extends javax.swing.JFrame {
                 100,
                 tipo
         );
-        Menu.ListaSensores.agregar(sensorTemperatura);
+        ControllerSensor.add(sensorTemperatura);
         JOptionPane.showMessageDialog(this, "Se ha agregado correctamente");
         clear();
     }//GEN-LAST:event_btnRegistrarMouseClicked
@@ -240,7 +241,7 @@ public class CreateSensor extends javax.swing.JFrame {
                 100,
                 tipo
         );
-        Menu.ListaSensores.editar(ip, nuevo);
+        ControllerSensor.edit(ip, nuevo);
         JOptionPane.showMessageDialog(this, "Se ha editado exitosamente");
     }//GEN-LAST:event_btnEditarMousePressed
 
@@ -248,7 +249,7 @@ public class CreateSensor extends javax.swing.JFrame {
         String ip = customTextField2.getText();
         
         if(!ip.equals("")){
-            Menu.ListaSensores.eliminar(ip);
+            ControllerSensor.delete(ip);
             JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente");
             clear();
             return;
@@ -267,7 +268,7 @@ public class CreateSensor extends javax.swing.JFrame {
         
         if(!ip.equals("")){
                 SensorTemperatura sensor = null;
-                sensor = (SensorTemperatura) Menu.ListaSensores.buscar(ip);
+                sensor = (SensorTemperatura) ControllerSensor.search(ip);
                 if(null != sensor){
                     customTextField4.setText(sensor.getNombre());
                     jTextArea1.setText(sensor.getTipoSensor());
