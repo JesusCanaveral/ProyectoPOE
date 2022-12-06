@@ -228,6 +228,22 @@ public class CreateLightbulb extends javax.swing.JFrame {
 
     private void editarFocosBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarFocosBtnMouseClicked
         // TODO add your handling code here:
+                var foco = new FocoInteligente(
+                        UUID.randomUUID().toString(),
+                        this.customTextField2.getText(),
+                        "apagado",
+                        this.customTextField5.getText(),
+                        this.customChoose1.getSelectedItem().toString(),
+                        "1.2.2.3",
+                        0,
+                        100,
+                        new Color(10,10,10),
+                        0,
+                        10
+        );
+        ControllerLightbulb.edit(foco.getIp(), foco);
+        JOptionPane.showMessageDialog(this, "Actualizado","Se ha actualizado", JOptionPane.INFORMATION_MESSAGE);
+
         
     }//GEN-LAST:event_editarFocosBtnMouseClicked
 

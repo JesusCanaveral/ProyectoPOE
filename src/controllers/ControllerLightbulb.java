@@ -26,10 +26,10 @@ public class ControllerLightbulb {
         listaFoco.eliminar(ip);
     }
     
-    /*
-    public static void edit(String ip, listaFoco nuevo)
+    
+    public static void edit(String ip, FocoInteligente nuevo)
     {
         listaFoco.editar(ip, nuevo);
     }
-*/
+
 }
