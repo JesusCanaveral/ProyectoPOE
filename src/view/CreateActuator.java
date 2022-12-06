@@ -5,6 +5,7 @@
 package view;
 
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import models.ActuadorTemperatura;
 import utils.Fonts;
 import utils.Colors;
@@ -96,7 +97,7 @@ public class CreateActuator extends javax.swing.JFrame {
         });
         jPanel1.add(customTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 680, -1));
 
-        customChoose1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zigbee", " " }));
+        customChoose1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zigbee", "" }));
         jPanel1.add(customChoose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 680, -1));
 
         buttonGroup1.add(customRadioButton1);
@@ -113,6 +114,11 @@ public class CreateActuator extends javax.swing.JFrame {
         jPanel1.add(customRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
 
         customButton1.setText("Eliminar");
+        customButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton1MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
 
         customButton2.setText("Registrar");
@@ -127,6 +133,11 @@ public class CreateActuator extends javax.swing.JFrame {
         jPanel1.add(customButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 130, 40));
 
         customButton4.setText("Buscar");
+        customButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton4MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 130, 40));
 
         jTextArea1.setColumns(20);
@@ -173,46 +184,47 @@ public class CreateActuator extends javax.swing.JFrame {
                 this.jTextArea1.getText()
         );
         Menu.ListaActuadores.agregar(actuador);
+        JOptionPane.showMessageDialog(this, "Agregado correctamente");
+        Menu.ListaActuadores.imprimir();
+        this.clear();
     }//GEN-LAST:event_customButton2MouseClicked
 
-    /**
-     * '
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateActuator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateActuator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateActuator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateActuator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void customButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton4MouseClicked
+        var ip = customTextField2.getText();
+        var actuador = (ActuadorTemperatura) Menu.ListaActuadores.buscar(ip);
+        if (null == actuador) {
+            JOptionPane.showMessageDialog(this, "No se encuentra","No hay",JOptionPane.WARNING_MESSAGE);
+            return;
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
+        customTextField4.setText(actuador.getNombre());
+        if (actuador.getTiempoRespuesta() == 1) {
+            customRadioButton1.setSelected(true);
+        } else {
+            customRadioButton1.setSelected(false);
+        }
+        customChoose1.setSelectedItem(actuador.getModelo());
+        jTextArea1.setText(actuador.getTipoActuador());
+    }//GEN-LAST:event_customButton4MouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateActuator().setVisible(true);
-            }
-        });
+    private void customButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton1MouseClicked
+        var wasDeleted = Menu.ListaActuadores.eliminar(customTextField2.getText());
+        if(wasDeleted)
+        {
+            JOptionPane.showMessageDialog(this, "Eliminado","Se ha eliminado", JOptionPane.INFORMATION_MESSAGE);
+        }else
+        {
+            JOptionPane.showMessageDialog(this, "No encontrado", "No se ha encontrado",JOptionPane.WARNING_MESSAGE);
+        }
+        Menu.ListaActuadores.imprimir();
+    }//GEN-LAST:event_customButton1MouseClicked
+
+    private void clear()
+    {
+        customTextField2.setText("");
+        customTextField4.setText("");
+        jTextArea1.setText("");
+        customChoose1.setSelectedItem("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

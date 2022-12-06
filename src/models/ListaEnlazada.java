@@ -34,19 +34,42 @@ public class ListaEnlazada {
         var aux = primero;
         while (null != aux)
         {
-            System.out.println(aux.getNombre());
+            System.out.println(aux.getIp());
             aux = aux.getSiguiente();
         }
     }
-
-    public DispositivoIOT buscar(String cuenta, String contrasenia)
+    
+    public boolean eliminar(String ip)
     {
         var aux = primero;
         while (null != aux)
         {
-            if (true)
+            var current = aux;
+            aux = aux.getSiguiente();
+            
+            if(null == aux)
             {
-                return null;
+                primero = null;
+                return true;
+            }
+            
+            if (aux.getIp().equals(ip))
+            {
+                current.setSiguiente(aux.getSiguiente());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public DispositivoIOT buscar(String ip)
+    {
+        var aux = primero;
+        while (null != aux)
+        {
+            if (aux.getIp().equals(ip))
+            {
+                return aux;
             }
             aux = aux.getSiguiente();
         }
