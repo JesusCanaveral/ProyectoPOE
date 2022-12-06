@@ -6,6 +6,7 @@ public class VehiculoRefrigerado {
     private SensorTemperatura sensorTemperatura;
     private GPS gps;
     private ActuadorTemperatura actuadorTemperatura;
+    private VehiculoRefrigerado siguiente;
 
     public VehiculoRefrigerado(){  }
     public VehiculoRefrigerado(String id, String modelo, SensorTemperatura sensorTemperatura, GPS gps, ActuadorTemperatura actuadorTemperatura) {
@@ -14,6 +15,7 @@ public class VehiculoRefrigerado {
         this.sensorTemperatura = sensorTemperatura;
         this.gps = gps;
         this.actuadorTemperatura = actuadorTemperatura;
+        this.siguiente = null;
     }
 
     public String getId() {
@@ -32,6 +34,14 @@ public class VehiculoRefrigerado {
         this.modelo = modelo;
     }
 
+    public VehiculoRefrigerado getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(VehiculoRefrigerado siguiente) {
+        this.siguiente = siguiente;
+    }
+    
     public SensorTemperatura getSensorTemperatura() {
         return sensorTemperatura;
     }

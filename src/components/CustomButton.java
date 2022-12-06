@@ -32,6 +32,7 @@ public class CustomButton extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(Colors.trans);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(Fonts.normal);
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

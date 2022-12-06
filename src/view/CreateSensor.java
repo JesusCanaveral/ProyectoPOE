@@ -4,7 +4,9 @@
  */
 package view;
 
+import java.awt.event.KeyEvent;
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import models.SensorTemperatura;
 import utils.Fonts;
 import utils.Colors;
@@ -14,10 +16,11 @@ import utils.Colors;
  * @author Usuario
  */
 public class CreateSensor extends javax.swing.JFrame {
-
-    /**
-     * Creates new form CreateDeviceGPS
-     */
+    private static final String IPV4_PATTERN_ALLOW_LEADING_ZERO =
+            "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
     public CreateSensor() {
         initComponents();
     }
@@ -42,14 +45,14 @@ public class CreateSensor extends javax.swing.JFrame {
         customTextField2 = new components.CustomTextField();
         customTextField4 = new components.CustomTextField();
         customChoose1 = new components.CustomChoose();
-        customRadioButton1 = new components.CustomRadioButton();
-        customRadioButton2 = new components.CustomRadioButton();
-        customButton1 = new components.CustomButton();
-        customButton2 = new components.CustomButton();
-        customButton3 = new components.CustomButton();
-        customButton4 = new components.CustomButton();
+        btnEliminar = new components.CustomButton();
+        btnRegistrar = new components.CustomButton();
+        btnEditar = new components.CustomButton();
+        btnBuscar = new components.CustomButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(Colors.white);
@@ -87,6 +90,12 @@ public class CreateSensor extends javax.swing.JFrame {
         jLabel6.setFont(Fonts.normal);
         jLabel6.setText("Unidades de medida");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+
+        customTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customTextField2KeyTyped(evt);
+            }
+        });
         jPanel1.add(customTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 680, -1));
 
         customTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -96,44 +105,54 @@ public class CreateSensor extends javax.swing.JFrame {
         });
         jPanel1.add(customTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 680, -1));
 
-        customChoose1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zigbee", " " }));
+        customChoose1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ds18b20", "DHT11", "ARD-360" }));
         jPanel1.add(customChoose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 680, -1));
 
-        buttonGroup1.add(customRadioButton1);
-        customRadioButton1.setText("Celsius");
-        customRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customRadioButton1ActionPerformed(evt);
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnEliminarMousePressed(evt);
             }
         });
-        jPanel1.add(customRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
 
-        buttonGroup1.add(customRadioButton2);
-        customRadioButton2.setText("Farenheit");
-        jPanel1.add(customRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
-
-        customButton1.setText("Eliminar");
-        jPanel1.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
-
-        customButton2.setText("Registrar");
-        customButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                customButton2MouseClicked(evt);
+                btnRegistrarMouseClicked(evt);
             }
         });
-        jPanel1.add(customButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
 
-        customButton3.setText("Editar");
-        jPanel1.add(customButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 130, 40));
+        btnEditar.setText("Editar");
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnEditarMousePressed(evt);
+            }
+        });
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 130, 40));
 
-        customButton4.setText("Buscar");
-        jPanel1.add(customButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 130, 40));
+        btnBuscar.setText("Buscar");
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 130, 40));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 670, 60));
+
+        buttonGroup1.add(jCheckBox1);
+        jCheckBox1.setText("Fahrenheit");
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+
+        buttonGroup1.add(jCheckBox2);
+        jCheckBox2.setText("Celcius");
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,30 +172,137 @@ public class CreateSensor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_customTextField4ActionPerformed
 
-    private void customRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_customRadioButton1ActionPerformed
-
-    private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
+    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
+        String units = "";
+        
+        if(jCheckBox1.isSelected()){  units += "F ";  }
+        if(jCheckBox2.isSelected()){  units += "C ";  }
+        
+        String ip = customTextField2.getText();
+        if(!ip.matches(IPV4_PATTERN_ALLOW_LEADING_ZERO)){
+            JOptionPane.showMessageDialog(this, "Ingrese una IP valida");
+            return;
+        }
+        String nombre = customTextField4.getText();
+        String tipo = this.jTextArea1.getText();
+        if(ip.equals("") || units.equals("") || nombre.equals("") || tipo.equals("")){
+            JOptionPane.showMessageDialog(this, "Ingresa todos los datos, por favor");
+            return;
+        }
+        
         SensorTemperatura sensorTemperatura = new SensorTemperatura(
                 "1.2.2.3",
                 UUID.randomUUID().toString(),
-                this.customTextField2.getText(),
+                ip,
                 "apagado",
-                this.customTextField4.getText(),
+                nombre,
                 this.customChoose1.getSelectedItem().toString(),
                 10,
-                this.customRadioButton1.isSelected() ? "F" : "C",
+                units,
                 0,
                 100,
-                this.jTextArea1.getText()
+                tipo
         );
-        Menu.ListaGPS.agregar(sensorTemperatura);
-    }//GEN-LAST:event_customButton2MouseClicked
+        Menu.ListaSensores.agregar(sensorTemperatura);
+        JOptionPane.showMessageDialog(this, "Se ha agregado correctamente");
+        clear();
+    }//GEN-LAST:event_btnRegistrarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMousePressed
+        String units = "";
+        
+        if(jCheckBox1.isSelected()){  units += "F ";  }
+        if(jCheckBox2.isSelected()){  units += "C ";  }
+        
+        String ip = customTextField2.getText();
+        if(!ip.matches(IPV4_PATTERN_ALLOW_LEADING_ZERO)){
+            JOptionPane.showMessageDialog(this, "Ingrese una IP valida");
+            return;
+        }
+        
+        String nombre = customTextField4.getText();
+        String tipo = this.jTextArea1.getText();
+        if(ip.equals("") || units.equals("") || nombre.equals("") || tipo.equals("")){
+            JOptionPane.showMessageDialog(this, "Ingresa todos los datos, por favor");
+            return;
+        }
+        
+        SensorTemperatura nuevo = new SensorTemperatura(
+                "1.2.2.3",
+                UUID.randomUUID().toString(),
+                ip,
+                "apagado",
+                nombre,
+                this.customChoose1.getSelectedItem().toString(),
+                10,
+                units,
+                0,
+                100,
+                tipo
+        );
+        Menu.ListaSensores.editar(ip, nuevo);
+        JOptionPane.showMessageDialog(this, "Se ha editado exitosamente");
+    }//GEN-LAST:event_btnEditarMousePressed
+
+    private void btnEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMousePressed
+        String ip = customTextField2.getText();
+        
+        if(!ip.equals("")){
+            Menu.ListaSensores.eliminar(ip);
+            JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente");
+            clear();
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "No se ha encontrado un Sensor con esa IP");
+        clear();
+    }//GEN-LAST:event_btnEliminarMousePressed
+
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        
+        String ip = customTextField2.getText();
+        if(!ip.matches(IPV4_PATTERN_ALLOW_LEADING_ZERO)){
+            JOptionPane.showMessageDialog(this, "Ingrese una IP valida");
+            return;
+        }
+        
+        if(!ip.equals("")){
+                SensorTemperatura sensor = null;
+                sensor = (SensorTemperatura) Menu.ListaSensores.buscar(ip);
+                if(null != sensor){
+                    customTextField4.setText(sensor.getNombre());
+                    jTextArea1.setText(sensor.getTipoSensor());
+                    String units = sensor.getUnidades();
+                    if(units.equals("F ")){
+                        jCheckBox1.setSelected(true);
+                    }   
+                    if(units.equals("c ")){
+                        jCheckBox2.setSelected(true);
+                    }
+                    return;
+                }
+              JOptionPane.showMessageDialog(this, "No se ha encontrado un dispositivo con esa IP");
+              return;
+        } 
+        JOptionPane.showMessageDialog(this, "Ingresa una IP para buscar");
+    }//GEN-LAST:event_btnBuscarMouseClicked
+
+    private void customTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextField2KeyTyped
+        char in = evt.getKeyChar();
+        if(!(Character.isDigit(in)) && !(in == KeyEvent.VK_BACK_SPACE)  && !(in == KeyEvent.VK_PERIOD)){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_customTextField2KeyTyped
+
+    
+    private void clear(){
+        jTextArea1.setText("");
+        buttonGroup1.clearSelection();
+        customTextField2.setText("");
+        customTextField4.setText("");
+        customChoose1.setSelectedIndex(1);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -210,17 +336,18 @@ public class CreateSensor extends javax.swing.JFrame {
         });
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private components.CustomButton btnBuscar;
+    private components.CustomButton btnEditar;
+    private components.CustomButton btnEliminar;
+    private components.CustomButton btnRegistrar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private components.CustomButton customButton1;
-    private components.CustomButton customButton2;
-    private components.CustomButton customButton3;
-    private components.CustomButton customButton4;
     private components.CustomChoose customChoose1;
-    private components.CustomRadioButton customRadioButton1;
-    private components.CustomRadioButton customRadioButton2;
     private components.CustomTextField customTextField2;
     private components.CustomTextField customTextField4;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -5,6 +5,7 @@
 package view;
 
 import java.util.UUID;
+import javax.swing.JOptionPane;
 import models.*;
 import utils.Fonts;
 import utils.Colors;
@@ -72,6 +73,11 @@ public class CreateVehicle extends javax.swing.JFrame {
         jPanel1.add(customChoose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 680, -1));
 
         customButton1.setText("Eliminar");
+        customButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton1MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
 
         customButton2.setText("Registrar");
@@ -83,9 +89,19 @@ public class CreateVehicle extends javax.swing.JFrame {
         jPanel1.add(customButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
 
         customButton3.setText("Editar");
+        customButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton3MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 130, 40));
 
         customButton4.setText("Buscar");
+        customButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton4MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 130, 40));
 
         jLabel5.setFont(Fonts.normal);
@@ -140,7 +156,27 @@ public class CreateVehicle extends javax.swing.JFrame {
                 (GPS) this.customChoose2.getSelectedItem(),
                 (ActuadorTemperatura)this.customChoose4.getSelectedItem()
         );
+        
+        JOptionPane.showConfirmDialog(this, "Se ha añadido correctamente");
+        clear();
     }//GEN-LAST:event_customButton2MouseClicked
+
+    private void customButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton4MouseClicked
+        
+        
+    }//GEN-LAST:event_customButton4MouseClicked
+
+    private void customButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton3MouseClicked
+        
+        JOptionPane.showConfirmDialog(this, "Se ha editado correctamente");
+        clear();
+    }//GEN-LAST:event_customButton3MouseClicked
+
+    private void customButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton1MouseClicked
+        
+        JOptionPane.showConfirmDialog(this, "Se ha eliminado correctamente");
+        clear();
+    }//GEN-LAST:event_customButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -183,7 +219,13 @@ public class CreateVehicle extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    private void clear(){
+        customChoose1.setSelectedIndex(1);
+        customChoose2.setSelectedIndex(1);
+        customChoose3.setSelectedIndex(1);
+        customChoose4.setSelectedIndex(1);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private components.CustomButton customButton1;

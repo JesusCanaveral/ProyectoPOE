@@ -4,6 +4,8 @@
  */
 package models;
 
+import java.util.Set;
+
 /**
  *
  * @author kechu
@@ -39,27 +41,20 @@ public class ListaEnlazada {
         }
     }
     
-    public boolean eliminar(String ip)
+    public void eliminar(String ip)
     {
         var aux = primero;
-        while (null != aux)
-        {
-            var current = aux;
-            aux = aux.getSiguiente();
-            
-            if(null == aux)
-            {
-                primero = null;
-                return true;
-            }
-            
-            if (aux.getIp().equals(ip))
-            {
-                current.setSiguiente(aux.getSiguiente());
-                return true;
-            }
+        if(aux.getIp().equals(ip)){
+            primero = primero.getSiguiente();
+            return;
         }
-        return false;
+        while (null != aux.getSiguiente())
+        {
+            if(aux.getSiguiente().getIp().equals(ip)){
+                aux.setSiguiente(aux.getSiguiente().getSiguiente());
+            }
+            aux = aux.getSiguiente();
+        }
     }
 
     public DispositivoIOT buscar(String ip)
@@ -74,5 +69,20 @@ public class ListaEnlazada {
             aux = aux.getSiguiente();
         }
         return null;
+    }
+    
+    public void editar(String ip, DispositivoIOT nuevo){
+        var aux = primero;
+        while (null != aux.getSiguiente())
+        {
+            if (aux.getSiguiente().getIp().equals(ip))
+            {
+                nuevo.setSiguiente(aux.getSiguiente().getSiguiente());
+                aux.setSiguiente(nuevo);
+                return;
+            }
+            aux = aux.getSiguiente();
+        }
+        primero = nuevo;
     }
 }
