@@ -4,7 +4,11 @@
  */
 package view;
 
+import controllers.ControllerGps;
+import java.awt.Color;
 import java.util.UUID;
+import javax.swing.JOptionPane;
+import models.FocoInteligente;
 import models.GPS;
 import utils.Fonts;
 import utils.Colors;
@@ -14,7 +18,11 @@ import utils.Colors;
  * @author Usuario
  */
 public class CreateDeviceGPS extends javax.swing.JFrame {
-
+     private static final String IPV4_PATTERN_ALLOW_LEADING_ZERO =
+            "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
     /**
      * Creates new form CreateDeviceGPS
      */
@@ -94,7 +102,23 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
                 customTextField1ActionPerformed(evt);
             }
         });
+        customTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customTextField1KeyTyped(evt);
+            }
+        });
         jPanel1.add(customTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 680, -1));
+
+        customTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customTextField2ActionPerformed(evt);
+            }
+        });
+        customTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                customTextField2KeyTyped(evt);
+            }
+        });
         jPanel1.add(customTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 680, -1));
 
         customTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -105,9 +129,15 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
         jPanel1.add(customTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 680, -1));
 
         customChoose1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zigbee", " " }));
+        customChoose1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customChoose1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(customChoose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 680, -1));
 
         buttonGroup1.add(customRadioButton1);
+        customRadioButton1.setSelected(true);
         customRadioButton1.setText("Baja");
         customRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,21 +198,77 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
     }//GEN-LAST:event_customRadioButton1ActionPerformed
 
     private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
-        GPS gps = new GPS(
-                "1.2.2.3",
-                UUID.randomUUID().toString(),
-                this.customTextField2.getText(),
-                "apagado",
-                this.customTextField4.getText(),
-                this.customChoose1.getSelectedItem().toString(),
-                1.98,
-                1.59,
-                1,
-                1,
-                1
-        );
-        Menu.ListaGPS.agregar(gps);
+
+        if(customTextField1.getText().equals("")||
+                customTextField2.getText().equals("")||
+                customTextField4.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Rellena todos los campos :)");
+        }else{
+            String ip = customTextField2.getText();
+            Double rdInteger = 1d;
+            if(customRadioButton1.isSelected())rdInteger = 1d;
+            else if(customRadioButton2.isSelected()) rdInteger = 2d;
+            else if(customRadioButton3.isSelected()) rdInteger = 3d;
+            if(!ip.matches(IPV4_PATTERN_ALLOW_LEADING_ZERO)){
+                JOptionPane.showMessageDialog(null, "Ingresa un formato de IP valido");
+            }else{
+                GPS gpsItem = new GPS(
+                    "1.2.2.3",
+                    UUID.randomUUID().toString(),
+                    ip,
+                    "apagado",
+                    this.customTextField4.getText(),
+                    this.customChoose1.getSelectedItem().toString(),
+                    1.98,
+                    1.59,
+                    1,
+                    rdInteger,
+                    Double.parseDouble(customTextField1.getText())
+                );
+                ControllerGps.add(gpsItem);
+            }
+        }
+        
     }//GEN-LAST:event_customButton2MouseClicked
+
+    private void customTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customTextField2ActionPerformed
+        
+    }//GEN-LAST:event_customTextField2ActionPerformed
+
+    private void customTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextField2KeyTyped
+        if(customTextField2.getText().length() == 17)
+        {
+            evt.consume();
+        }
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57 || key ==46;
+
+        if (!numeros)
+        {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_customTextField2KeyTyped
+
+    private void customChoose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customChoose1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customChoose1ActionPerformed
+
+    private void customTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customTextField1KeyTyped
+       if(customTextField2.getText().length() == 11)
+        {
+            evt.consume();
+        }
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_customTextField1KeyTyped
 
     /**
      * @param args the command line arguments
