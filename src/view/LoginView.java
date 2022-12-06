@@ -5,6 +5,8 @@
  */
 package view;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import models.Usuario;
 import utils.Fonts;
 import utils.Colors;
 /**
@@ -12,11 +14,15 @@ import utils.Colors;
  * @author luz
  */
 public class LoginView extends javax.swing.JFrame {
-
+    public  static Usuario  listaUsuarios []= new Usuario[4];
     /**
-     * Creates new form LoginView
+ * Creates new form LoginView
      */
     public LoginView() {
+        listaUsuarios[0]=new Usuario("Angel","Luz");
+        listaUsuarios[1]=new Usuario("Jesus","Cañaveral");
+        listaUsuarios[2]=new Usuario("Christofer","Luevanos");
+        listaUsuarios[3]=new Usuario("Alvaro","Corona");
         initComponents();
         this.getContentPane().requestFocusInWindow();
     }
@@ -82,6 +88,11 @@ public class LoginView extends javax.swing.JFrame {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 400, -1));
 
         customButton1.setText("Iniciar Sesión");
+        customButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton1MouseClicked(evt);
+            }
+        });
         jPanel2.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 260, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -100,6 +111,46 @@ public class LoginView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void customButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton1MouseClicked
+        int error=0;
+        if (!customTextField1.getText().isEmpty()||customPassField1.getText().equals("")) {
+            for (int i=0;i<4;i++) {
+                if(customTextField1.getText().equals(listaUsuarios[i].getNombre())){
+                    if (customPassField1.getText().equals(listaUsuarios[i].getContrasena())) {
+                        error=0;
+                        this.setVisible(false);
+                        java.awt.EventQueue.invokeLater(new Runnable() {
+                            public void run() {
+                                new Menu().setVisible(true);
+                            }
+                        });
+                        break;
+                    }else{
+                        error=1;
+                        break;
+                    }
+                }else{
+                    error=2;
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, 
+                            "Rellena todos los campos");
+        }
+        switch (error) {
+            case 1:
+                JOptionPane.showMessageDialog(null, 
+                            "La contraseña es erronea");
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, 
+                            "El usuario que ingresaste no existe");
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_customButton1MouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -148,4 +199,5 @@ public class LoginView extends javax.swing.JFrame {
     private components.TitleClose titleClose1;
     private components.TitleMin titleMin2;
     // End of variables declaration//GEN-END:variables
+
 }
