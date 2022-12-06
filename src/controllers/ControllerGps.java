@@ -25,4 +25,7 @@ public class ControllerGps {
     public static void delete(String ip){
         listaGPS.eliminar(ip);
     }
+    public static void modify(String ip,GPS itemGps){
+        listaGPS.editar(ip,itemGps);
+    }
 }

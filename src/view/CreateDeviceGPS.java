@@ -57,7 +57,7 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
         customButton1 = new components.CustomButton();
         customButton2 = new components.CustomButton();
         customButton3 = new components.CustomButton();
-        customButton4 = new components.CustomButton();
+        components.CustomButton customButton4 = new components.CustomButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(Colors.white);
@@ -128,7 +128,7 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
         });
         jPanel1.add(customTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 680, -1));
 
-        customChoose1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zigbee", " " }));
+        customChoose1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zigbee", "Garmin", "Trapecio" }));
         customChoose1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customChoose1ActionPerformed(evt);
@@ -155,6 +155,11 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
         jPanel1.add(customRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, -1, -1));
 
         customButton1.setText("Eliminar");
+        customButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton1MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 130, 40));
 
         customButton2.setText("Registrar");
@@ -166,9 +171,19 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
         jPanel1.add(customButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 130, 40));
 
         customButton3.setText("Editar");
+        customButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton3MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 130, 40));
 
         customButton4.setText("Buscar");
+        customButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customButton4MouseClicked(evt);
+            }
+        });
         jPanel1.add(customButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 130, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -270,6 +285,86 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_customTextField1KeyTyped
 
+    private void customButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton3MouseClicked
+        if(customTextField1.getText().equals("")||
+                customTextField2.getText().equals("")||
+                customTextField4.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Rellena todos los campos :)");
+        }else{
+            String ip = customTextField2.getText();
+            Double rdInteger = 1d;
+            if(customRadioButton1.isSelected())rdInteger = 1d;
+            else if(customRadioButton2.isSelected()) rdInteger = 2d;
+            else if(customRadioButton3.isSelected()) rdInteger = 3d;
+            if(!ip.matches(IPV4_PATTERN_ALLOW_LEADING_ZERO)){
+                JOptionPane.showMessageDialog(null, "Ingresa un formato de IP valido");
+            }else{
+                GPS gpsItem = new GPS(
+                    "1.2.2.3",
+                    UUID.randomUUID().toString(),
+                    ip,
+                    "apagado",
+                    this.customTextField4.getText(),
+                    this.customChoose1.getSelectedItem().toString(),
+                    1.98,
+                    1.59,
+                    1,
+                    rdInteger,
+                    Double.parseDouble(customTextField1.getText())
+                );
+                ControllerGps.modify(ip,gpsItem);
+            }
+        }
+    }//GEN-LAST:event_customButton3MouseClicked
+
+    private void customButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton4MouseClicked
+        
+        GPS itemGps = new GPS();
+        if(customTextField2.getText().equals("")){
+            JOptionPane.showMessageDialog(null, 
+                    "Ingresa una ip");
+        }else{
+            String ip = customTextField2.getText();
+            if(!ip.matches(IPV4_PATTERN_ALLOW_LEADING_ZERO)){
+                JOptionPane.showMessageDialog(null, 
+                        "Ingresa un formato de IP valido");
+            }else{
+                itemGps = ControllerGps.search(ip);
+                if(itemGps==null){
+                    JOptionPane.showMessageDialog(null, 
+                            "El GPS no se encuentra registrado");
+                }else{
+                    customTextField1.setText(""+itemGps.getTiempoActualizacion());
+                    customTextField4.setText(itemGps.getNombre());
+                    if(itemGps.getModelo().equals("Zigbee"))customChoose1.setSelectedIndex(0);
+                    else if(itemGps.getModelo().equals("Garmin"))customChoose1.setSelectedIndex(1);
+                    else if(itemGps.getModelo().equals("Trapecio"))customChoose1.setSelectedIndex(2);
+                    if(itemGps.getPrecision()==1)customRadioButton1.setSelected(true);
+                    else if(itemGps.getPrecision()==2)customRadioButton2.setSelected(true);
+                    else if(itemGps.getPrecision()==3)customRadioButton3.setSelected(true);
+                }
+            }
+        }
+    }//GEN-LAST:event_customButton4MouseClicked
+
+    private void customButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton1MouseClicked
+
+        if(customTextField2.getText().equals("")){
+            JOptionPane.showMessageDialog(null, 
+                    "Ingresa una ip");
+        }else{
+            String ip = customTextField2.getText();
+            if(!ip.matches(IPV4_PATTERN_ALLOW_LEADING_ZERO)){
+                JOptionPane.showMessageDialog(null, 
+                        "Ingresa un formato de IP valido");
+            }else{
+                ControllerGps.delete(ip);
+                JOptionPane.showMessageDialog(null, 
+                        "El GPS se ha eliminado");
+            }
+        }
+    }//GEN-LAST:event_customButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -310,7 +405,6 @@ public class CreateDeviceGPS extends javax.swing.JFrame {
     private components.CustomButton customButton1;
     private components.CustomButton customButton2;
     private components.CustomButton customButton3;
-    private components.CustomButton customButton4;
     private components.CustomChoose customChoose1;
     private components.CustomRadioButton customRadioButton1;
     private components.CustomRadioButton customRadioButton2;
