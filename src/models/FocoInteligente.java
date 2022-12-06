@@ -10,7 +10,8 @@ public class FocoInteligente extends DispositivoIOT{
     private double tiempoDeVida;  //restante estimado
 
     public FocoInteligente(){  super();  }
-    public FocoInteligente(String id, String ip, String estadoActividad, String nombre, String modelo, String versionFirmware, int intensidadMaxima, int potenciaDeConsumo, Color rgb, int intensidadRegulada, double tiempoDeVida) {
+    public FocoInteligente(String id, String ip, String estadoActividad, String nombre, String modelo, 
+            String versionFirmware, int intensidadMaxima, int potenciaDeConsumo, Color rgb, int intensidadRegulada, double tiempoDeVida) {
         super(id, ip, estadoActividad, nombre, modelo, versionFirmware);
         this.intensidadMaxima = intensidadMaxima;
         this.potenciaDeConsumo = potenciaDeConsumo;
@@ -57,5 +58,5 @@ public class FocoInteligente extends DispositivoIOT{
 
     public void setTiempoDeVida(double tiempoDeVida) {
         this.tiempoDeVida = tiempoDeVida;
-    }
+    }    
 }

@@ -39,13 +39,13 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItemBombilla = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        jMostrarBombillas = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -119,15 +119,20 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem4.setText("Bombilla");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemBombilla.setText("Bombilla");
+        jMenuItemBombilla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenuItemBombillaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(jMenuItemBombilla);
 
         jMenuItem5.setText("GPS");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuBar1.add(jMenu1);
@@ -146,13 +151,23 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem8.setText("Vehiculos");
         jMenu2.add(jMenuItem8);
 
-        jMenuItem9.setText("Bombillas");
-        jMenu2.add(jMenuItem9);
+        jMostrarBombillas.setText("Bombillas");
+        jMostrarBombillas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMostrarBombillasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMostrarBombillas);
 
         jMenuItem10.setText("GPS");
         jMenu2.add(jMenuItem10);
 
         jMenuItem11.setText("Mapa");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem11);
 
         jMenuBar1.add(jMenu2);
@@ -168,9 +183,10 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuItemBombillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBombillaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+        this.CreateAndAddInternalFrame(new CreateLightbulb());
+    }//GEN-LAST:event_jMenuItemBombillaActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         
@@ -187,6 +203,23 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         CreateAndAddInternalFrame(new CreateVehicle());
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        this.CreateAndAddInternalFrame(new CreateDeviceGPS());
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMostrarBombillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMostrarBombillasActionPerformed
+        // TODO add your handling code here:
+        this.CreateAndAddInternalFrame(new TablasFocos());
+    }//GEN-LAST:event_jMostrarBombillasActionPerformed
 
     private void CreateAndAddInternalFrame(JFrame frame)
     {
@@ -230,6 +263,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     public static ListaEnlazada ListaSensores = new ListaEnlazada();
+    public static ListaEnlazada ListaFocos = new ListaEnlazada();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -243,11 +277,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItemBombilla;
+    private javax.swing.JMenuItem jMostrarBombillas;
     // End of variables declaration//GEN-END:variables
 }
