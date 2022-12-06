@@ -191,7 +191,6 @@ public class CreateActuator extends javax.swing.JFrame {
         );
         ControllerActuator.add(actuador);
         JOptionPane.showMessageDialog(this, "Agregado correctamente");
-        ControllerActuator.listaActuador.imprimir();
         this.clear();
     }//GEN-LAST:event_customButton2MouseClicked
 
@@ -216,7 +215,6 @@ public class CreateActuator extends javax.swing.JFrame {
     private void customButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton1MouseClicked
         ControllerActuator.delete(customTextField2.getText());
         JOptionPane.showMessageDialog(this, "Eliminado","Se ha eliminado", JOptionPane.INFORMATION_MESSAGE);
-        ControllerActuator.listaActuador.imprimir();
         clear();
     }//GEN-LAST:event_customButton1MouseClicked
 

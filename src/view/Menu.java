@@ -112,6 +112,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Vehiculo");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Bombilla");
@@ -179,6 +184,10 @@ public class Menu extends javax.swing.JFrame {
         this.CreateAndAddInternalFrame(new CreateSensor());
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        CreateAndAddInternalFrame(new CreateVehicle());
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     private void CreateAndAddInternalFrame(JFrame frame)
     {
         var internalFrame = new GeneralJInternalFrame(frame.getContentPane());
@@ -220,8 +229,6 @@ public class Menu extends javax.swing.JFrame {
         });
     }
 
-    public static ListaEnlazada ListaGPS = new ListaEnlazada();    
-    public static ListaEnlazada ListaActuadores = new ListaEnlazada();
     public static ListaEnlazada ListaSensores = new ListaEnlazada();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

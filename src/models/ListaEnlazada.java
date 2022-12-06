@@ -4,7 +4,7 @@
  */
 package models;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 /**
  *
@@ -31,14 +31,16 @@ public class ListaEnlazada {
         pasado.setSiguiente(nodo);
     }
 
-    public void imprimir()
+    public ArrayList<DispositivoIOT> listar()
     {
+        var dispositivos = new ArrayList<DispositivoIOT>();
         var aux = primero;
         while (null != aux)
         {
-            System.out.println(aux.getIp());
+            dispositivos.add(aux);
             aux = aux.getSiguiente();
         }
+        return dispositivos;
     }
     
     public void eliminar(String ip)
