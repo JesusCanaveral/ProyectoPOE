@@ -74,6 +74,21 @@ public class Cola {
         return vehiculos;
     }
     
+    public void editar(String ip, VehiculoRefrigerado nuevo){
+        var aux = primero;
+        while (null != aux.getSiguiente())
+        {
+            if (aux.getSiguiente().getId().equals(ip))
+            {
+                nuevo.setSiguiente(aux.getSiguiente().getSiguiente());
+                aux.setSiguiente(nuevo);
+                return;
+            }
+            aux = aux.getSiguiente();
+        }
+        primero = nuevo;
+    }
+    
     public Object [][] toBidimensionalArray(char c){
         var aux = primero;
         int contador = 0;

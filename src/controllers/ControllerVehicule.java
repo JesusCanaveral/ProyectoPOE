@@ -32,4 +32,9 @@ public class ControllerVehicule {
     {
         return colaVehiculo.recorrer();
     }
+    
+    public static void edit(String id, VehiculoRefrigerado vehiculo)
+    {
+        colaVehiculo.editar(id, vehiculo);
+    }
 }

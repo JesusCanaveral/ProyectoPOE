@@ -5,6 +5,7 @@
 package view;
 
 import controllers.ControllerActuator;
+import controllers.ControllerGps;
 import controllers.ControllerSensor;
 import controllers.ControllerVehicule;
 import java.util.UUID;
@@ -24,15 +25,17 @@ public class CreateVehicle extends javax.swing.JFrame {
      */
     public CreateVehicle() {
         initComponents();
-        
-        for(var iot : ControllerActuator.listaActuador.listar())
-        {
+
+        for (var iot : ControllerActuator.listaActuador.listar()) {
             this.customChoose4.addItem(iot.getNombre() + " - " + iot.getIp());
         }
-        
-        for(var iot : ControllerSensor.listaSensor.listar())
-        {
+
+        for (var iot : ControllerSensor.listaSensor.listar()) {
             this.customChoose1.addItem(iot.getNombre() + " - " + iot.getIp());
+        }
+
+        for (var iot : ControllerGps.listaGPS.listar()) {
+            this.customChoose2.addItem(iot.getNombre() + " - " + iot.getIp());
         }
     }
 
@@ -60,6 +63,8 @@ public class CreateVehicle extends javax.swing.JFrame {
         customChoose3 = new components.CustomChoose();
         customChoose4 = new components.CustomChoose();
         jLabel7 = new javax.swing.JLabel();
+        customTextField1 = new components.CustomTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(Colors.white);
@@ -79,11 +84,11 @@ public class CreateVehicle extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, -1));
 
         jLabel4.setFont(Fonts.normal);
-        jLabel4.setText("Sensor");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        jLabel4.setText("ID");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         customChoose1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sensor 1" }));
-        jPanel1.add(customChoose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 680, -1));
+        jPanel1.add(customChoose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 680, -1));
 
         customButton1.setText("Eliminar");
         customButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,17 +124,17 @@ public class CreateVehicle extends javax.swing.JFrame {
 
         jLabel5.setFont(Fonts.normal);
         jLabel5.setText("GPS");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
         customChoose2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "GPS 1" }));
-        jPanel1.add(customChoose2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 680, -1));
+        jPanel1.add(customChoose2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 680, -1));
 
         jLabel6.setFont(Fonts.normal);
         jLabel6.setText("Modelo");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         customChoose3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Honda" }));
-        jPanel1.add(customChoose3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 680, -1));
+        jPanel1.add(customChoose3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 680, -1));
 
         customChoose4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Actuador 1" }));
         customChoose4.addActionListener(new java.awt.event.ActionListener() {
@@ -137,17 +142,31 @@ public class CreateVehicle extends javax.swing.JFrame {
                 customChoose4ActionPerformed(evt);
             }
         });
-        jPanel1.add(customChoose4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 680, -1));
+        jPanel1.add(customChoose4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 680, -1));
 
         jLabel7.setFont(Fonts.normal);
         jLabel7.setText("Actuador temperatura");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+
+        customTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(customTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 680, -1));
+
+        jLabel8.setFont(Fonts.normal);
+        jLabel8.setText("Sensor");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,19 +183,21 @@ public class CreateVehicle extends javax.swing.JFrame {
     private void customButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton2MouseClicked
         String actuatorIP = this.customChoose4.getSelectedItem().toString().split(" - ")[1];
         var actuator = (ActuadorTemperatura) ControllerActuator.search(actuatorIP);
-        
+
         String sensorIP = this.customChoose1.getSelectedItem().toString().split(" - ")[1];
         var sensor = (SensorTemperatura) ControllerSensor.search(sensorIP);
 
-        
+        String gpsIP = this.customChoose2.getSelectedItem().toString().split(" - ")[1];
+        var GPS = (GPS) ControllerGps.search(gpsIP);
+
         VehiculoRefrigerado vehiculoRefrigerado = new VehiculoRefrigerado(
                 UUID.randomUUID().toString(),
                 this.customChoose3.getSelectedItem().toString(),
                 sensor,
-                new GPS(),
+                GPS,
                 actuator
         );
-        
+
         ControllerVehicule.add(vehiculoRefrigerado);
         JOptionPane.showMessageDialog(this, "Se ha añadido correctamente");
         ControllerVehicule.list();
@@ -184,22 +205,49 @@ public class CreateVehicle extends javax.swing.JFrame {
     }//GEN-LAST:event_customButton2MouseClicked
 
     private void customButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton4MouseClicked
-        
-        
+        var vehicle = ControllerVehicule.search(this.customTextField1.getText());
+
+        this.customChoose1.setSelectedItem(vehicle.getSensorTemperatura().getNombre() + " - " + vehicle.getSensorTemperatura().getIp());
+        this.customChoose2.setSelectedItem(vehicle.getGps().getNombre() + " - " + vehicle.getSensorTemperatura().getIp());
+        this.customChoose3.setSelectedItem(vehicle.getModelo());
+        this.customChoose4.setSelectedItem(vehicle.getActuadorTemperatura().getNombre() + " - " + vehicle.getSensorTemperatura().getIp());
+
     }//GEN-LAST:event_customButton4MouseClicked
 
     private void customButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton3MouseClicked
+
+        String actuatorIP = this.customChoose4.getSelectedItem().toString().split(" - ")[1];
+        var actuator = (ActuadorTemperatura) ControllerActuator.search(actuatorIP);
+
+        String sensorIP = this.customChoose1.getSelectedItem().toString().split(" - ")[1];
+        var sensor = (SensorTemperatura) ControllerSensor.search(sensorIP);
+
+        String gpsIP = this.customChoose2.getSelectedItem().toString().split(" - ")[1];
+        var GPS = (GPS) ControllerGps.search(gpsIP);
+
+        VehiculoRefrigerado vehiculoRefrigerado = new VehiculoRefrigerado(
+                UUID.randomUUID().toString(),
+                this.customChoose3.getSelectedItem().toString(),
+                sensor,
+                GPS,
+                actuator
+        );
         
+        ControllerVehicule.edit(this.customTextField1.getText(), vehiculoRefrigerado);
         JOptionPane.showMessageDialog(this, "Se ha editado correctamente");
         clear();
     }//GEN-LAST:event_customButton3MouseClicked
 
     private void customButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customButton1MouseClicked
-        
+
         ControllerVehicule.delete();
         JOptionPane.showMessageDialog(this, "Se ha eliminado correctamente");
         clear();
     }//GEN-LAST:event_customButton1MouseClicked
+
+    private void customTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,8 +290,8 @@ public class CreateVehicle extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void clear(){
+
+    private void clear() {
         customChoose1.setSelectedIndex(0);
         customChoose2.setSelectedIndex(0);
         customChoose3.setSelectedIndex(0);
@@ -259,11 +307,13 @@ public class CreateVehicle extends javax.swing.JFrame {
     private components.CustomChoose customChoose2;
     private components.CustomChoose customChoose3;
     private components.CustomChoose customChoose4;
+    private components.CustomTextField customTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
