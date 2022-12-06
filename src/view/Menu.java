@@ -59,7 +59,6 @@ public class Menu extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(java.awt.Color.black);
         setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDesktopPane1.setMinimumSize(new java.awt.Dimension(800, 600));
@@ -194,7 +193,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu3.setBackground(Colors.mediumBlue);
         jMenu3.setForeground(Colors.mediumBlue);
-        jMenu3.setText("____________________________________________________________");
+        jMenu3.setText("__________________________________________________________________________________________________________________________");
         jMenu3.setOpaque(true);
         jMenuBar1.add(jMenu3);
 
