@@ -102,9 +102,9 @@ public class Cola {
         while(aux != null){
             result[contador][0] = aux.getId();
             result[contador][1] = aux.getModelo();
-            result[contador][2] = aux.getGps().getNombre() + " - " + aux.getGps().getId();
-            result[contador][3] = aux.getSensorTemperatura().getNombre() + " - " + aux.getSensorTemperatura().getId();
-            result[contador][4] = aux.getActuadorTemperatura().getNombre() + " - " + aux.getActuadorTemperatura().getId();
+            result[contador][2] = aux.getGps().getNombre() + " - " + aux.getGps().getIp();
+            result[contador][3] = aux.getSensorTemperatura().getNombre() + " - " + aux.getSensorTemperatura().getIp();
+            result[contador][4] = aux.getActuadorTemperatura().getNombre() + " - " + aux.getActuadorTemperatura().getIp();
             aux = aux.getSiguiente();
             contador++;
         }
