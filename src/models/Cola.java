@@ -73,4 +73,26 @@ public class Cola {
         }
         return vehiculos;
     }
+    
+    public Object [][] toBidimensionalArray(char c){
+        var aux = primero;
+        int contador = 0;
+        while(aux != null){
+            aux = aux.getSiguiente();
+            contador++;
+        }
+        Object [][] result = new Object[contador][5];
+        aux = primero;
+        contador = 0;
+        while(aux != null){
+            result[contador][0] = aux.getId();
+            result[contador][1] = aux.getModelo();
+            result[contador][2] = aux.getGps().getNombre() + " - " + aux.getGps().getId();
+            result[contador][3] = aux.getSensorTemperatura().getNombre() + " - " + aux.getSensorTemperatura().getId();
+            result[contador][4] = aux.getActuadorTemperatura().getNombre() + " - " + aux.getActuadorTemperatura().getId();
+            aux = aux.getSiguiente();
+            contador++;
+        }
+        return result;
+    }
 }
